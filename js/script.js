@@ -16,11 +16,13 @@ function separador(entradaEndereco) {
    let enderecoNumero = '';
    let enderecoFinal = ['', ''];
 
+   // Remover possíveis virgulas
    endereco = entradaEndereco.replace(',', '').split(' ');
 
    for (let i = 0; i < endereco.length; i++) {
       const regexNum = /[0-9]+/;
       const regexLet = /[A-z]/;
+      // variável criada para armazenar possíveis prefixos antes do número, aplicada mais a frente no código
       let palavras =
          endereco[i].toLowerCase() === 'no' ||
          endereco[i].toLowerCase() === 'n' ||
@@ -28,6 +30,7 @@ function separador(entradaEndereco) {
          endereco[i].toLowerCase() === 'numero' ||
          endereco[i].toLowerCase() === 'número';
 
+      // estrutura if else para organizar os elementos do endereço dependendo da forma que foram digitados
       if ((i === 0 || i === endereco.length - 1) && regexNum.test(endereco[i])) {
          enderecoNumero += endereco[i];
       } else if (
@@ -46,7 +49,7 @@ function separador(entradaEndereco) {
          enderecoNome += `${endereco[i]} `;
       }
    }
-
+   // criação do do endereço final, que irá aparecer na tela
    enderecoFinal[0] = enderecoNome;
    enderecoFinal[1] = enderecoNumero;
    console.log(enderecoFinal);
